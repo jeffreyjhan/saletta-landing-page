@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>window.dataLayer = window.dataLayer || [];</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TR23W8WR');</script>
+<!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Michael Saletta | Leadership Frameworks for Senior Executives</title>
 <meta name="description" content="Science-backed leadership frameworks that help CEOs and senior executives eliminate misalignment and execute with precision.">
@@ -125,6 +133,11 @@ body{font-family:'Outfit',sans-serif;background:var(--navy-deep);color:var(--whi
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TR23W8WR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 
 <!-- NAV -->
 <nav class="nav" id="main-nav">
@@ -280,20 +293,46 @@ function animateCounter(id,end,duration,suffix){
   },16);
 }
 
-// Form submission
+// Form submission to Kit + redirect to thank you page
 function submitForm(variant){
-  if(variant===1){
-    var email=document.getElementById('hero-email').value;
-    if(email&&email.includes('@')){
-      document.getElementById('hero-form-wrap').innerHTML='<div class="success-msg">You\u2019re in. Check your inbox for your first framework.</div>';
-    }
-  }
-  if(variant===2){
-    var email2=document.getElementById('bottom-email').value;
-    if(email2&&email2.includes('@')){
-      document.getElementById('bottom-form-wrap').innerHTML='<div class="success-msg" style="margin:0 auto">You\u2019re in. Check your inbox for your first framework.</div>';
-    }
-  }
+  var email = '';
+  if(variant===1) email = document.getElementById('hero-email').value;
+  if(variant===2) email = document.getElementById('bottom-email').value;
+
+  if(!email || !email.includes('@')) return;
+
+  // Fire GTM dataLayer event
+  window.dataLayer.push({'event':'email_signup','form_location': variant===1 ? 'hero' : 'bottom_cta'});
+
+  // Disable buttons
+  var btns = document.querySelectorAll('.hero-btn');
+  btns.forEach(function(b){ b.textContent = 'Submitting...'; b.disabled = true; });
+
+  // Create hidden iframe target
+  var iframe = document.createElement('iframe');
+  iframe.name = 'kit-submit';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  // Create hidden form pointing to Kit
+  var form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://app.kit.com/forms/9219371/subscriptions';
+  form.target = 'kit-submit';
+
+  var input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'email_address';
+  input.value = email;
+  form.appendChild(input);
+
+  document.body.appendChild(form);
+  form.submit();
+
+  // Redirect after brief delay to allow submission
+  setTimeout(function(){
+    window.location.href = '/thanks';
+  }, 1200);
 }
 </script>
 </body>
