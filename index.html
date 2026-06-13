@@ -131,6 +131,18 @@ body{font-family:'Outfit',sans-serif;background:var(--navy-deep);color:var(--whi
   .stat-number{font-size:48px}
 }
 </style>
+<style>
+/* Hero lead-magnet: book cover beside the signup box */
+.hero-signup{display:flex;gap:22px;align-items:center;max-width:520px}
+.hero-magnet{position:relative;flex:0 0 auto;line-height:0}
+.hero-magnet-cover{width:132px;height:auto;border-radius:4px;display:block;box-shadow:0 16px 36px rgba(0,0,0,.5);border:1px solid rgba(201,168,76,.3)}
+.hero-magnet-badge{position:absolute;top:-9px;left:-9px;background:var(--gold);color:var(--navy-deep);font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 9px;border-radius:2px;line-height:1;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.hero-signup-fields{flex:1;min-width:0}
+.hero-magnet-label{font-size:14px;line-height:1.45;color:var(--slate-light);font-weight:300;margin:0 0 14px}
+.hero-magnet-label strong{color:var(--white);font-weight:600}
+@media(max-width:968px){.hero-signup{gap:18px}.hero-magnet-cover{width:108px}}
+@media(max-width:600px){.hero-signup{flex-direction:column;align-items:flex-start;gap:16px}.hero-magnet-cover{width:124px}.hero-magnet-label{margin-bottom:10px}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -162,11 +174,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 class="hero-h1 fade-up d1" data-animate>Your Team Isn&rsquo;t the Problem. <em>Alignment Is.</em></h1>
       <p class="hero-sub fade-up d2" data-animate>Get the science-backed leadership frameworks that help CEOs and senior executives eliminate misalignment, install behavior change systems, and execute with precision. Delivered to your inbox weekly.</p>
       <div class="fade-up d3" data-animate id="hero-form-wrap">
-        <div class="hero-form">
-          <input id="hero-email" type="email" class="hero-input" placeholder="Your executive email">
-          <button class="hero-btn" onclick="submitForm(1)">Get Access</button>
+        <div class="hero-signup">
+          <div class="hero-magnet">
+            <img class="hero-magnet-cover" src="feedback-playbook-cover.jpg" width="600" height="900" alt="The Feedback Playbook by Michael Saletta &mdash; free leadership guide">
+            <span class="hero-magnet-badge">Free</span>
+          </div>
+          <div class="hero-signup-fields">
+            <p class="hero-magnet-label">Get <strong>The Feedback Playbook&trade;</strong> free when you subscribe</p>
+            <div class="hero-form">
+              <input id="hero-email" type="email" class="hero-input" placeholder="Your executive email">
+              <button class="hero-btn" onclick="submitForm(1)">Get Access</button>
+            </div>
+            <p class="hero-note">Join 1,000+ executives. No spam. Unsubscribe anytime.</p>
+          </div>
         </div>
-        <p class="hero-note">Join 1,000+ executives. No spam. Unsubscribe anytime.</p>
       </div>
     </div>
     <div class="hero-image-wrap">
@@ -317,7 +338,7 @@ function submitForm(variant){
   // Create hidden form pointing to Kit
   var form = document.createElement('form');
   form.method = 'POST';
-  form.action = 'https://app.kit.com/forms/005a017b31/subscriptions';
+  form.action = 'https://app.kit.com/forms/9546925/subscriptions';
   form.target = 'kit-submit';
 
   var input = document.createElement('input');
