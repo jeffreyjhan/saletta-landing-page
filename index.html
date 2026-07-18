@@ -53,6 +53,8 @@ body{font-family:'Outfit',sans-serif;background:var(--navy-deep);color:var(--whi
 .hero-input{flex:1;padding:16px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-right:none;color:var(--white);font-family:'Outfit',sans-serif;font-size:15px;font-weight:300;outline:none;transition:all .3s ease}
 .hero-input::placeholder{color:var(--slate)}
 .hero-input:focus{border-color:var(--gold);background:rgba(201,168,76,.05)}
+@keyframes emailGlow{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}50%{box-shadow:0 0 24px 5px rgba(201,168,76,.55);border-color:var(--gold);background:rgba(201,168,76,.08)}}
+.hero-input.glow-pulse{animation:emailGlow .75s ease-in-out 3}
 .hero-btn{padding:16px 32px;background:var(--gold);border:1px solid var(--gold);color:var(--navy-deep);font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .3s ease;white-space:nowrap}
 .hero-btn:hover{background:var(--gold-light);border-color:var(--gold-light)}
 .hero-note{margin-top:14px;font-size:13px;color:var(--slate);font-weight:300}
@@ -154,7 +156,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- NAV -->
 <nav class="nav" id="main-nav">
   <div class="nav-logo">MICHAEL <span>SALETTA</span></div>
-  <a href="#hero-email" class="nav-cta" onclick="document.getElementById('hero-email').focus();return false;">Get the Framework</a>
+  <a href="#hero-email" class="nav-cta" onclick="return highlightHeroEmail();">Get the Framework</a>
 </nav>
 
 <!-- HERO -->
@@ -275,7 +277,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <footer class="footer">
-  <p>&copy; 2025 Saletta Leadership, LLC. All rights reserved. &middot; <a href="https://www.youtube.com/@michaelsaletta-mindset" target="_blank" rel="noopener noreferrer">YouTube</a></p>
+  <p>&copy; 2025 Saletta Leadership, LLC. All rights reserved. &middot; <a href="https://www.youtube.com/@michaelsaletta-leadership" target="_blank" rel="noopener noreferrer">YouTube</a></p>
 </footer>
 
 <script>
@@ -312,6 +314,18 @@ function animateCounter(id,end,duration,suffix){
     if(start>=end){el.textContent=end.toLocaleString()+suffix;clearInterval(timer)}
     else{el.textContent=Math.floor(start).toLocaleString()+suffix}
   },16);
+}
+
+// Nav CTA: scroll to hero email, focus it, pulse the glow
+function highlightHeroEmail(){
+  var el=document.getElementById('hero-email');
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+  el.focus({preventScroll:true});
+  el.classList.remove('glow-pulse');
+  void el.offsetWidth; // restart the animation on repeat clicks
+  el.classList.add('glow-pulse');
+  el.addEventListener('animationend',function(){el.classList.remove('glow-pulse')},{once:true});
+  return false;
 }
 
 // Form submission to Kit + redirect to thank you page
