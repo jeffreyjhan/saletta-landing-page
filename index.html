@@ -145,6 +145,42 @@ body{font-family:'Outfit',sans-serif;background:var(--navy-deep);color:var(--whi
 .hero-magnet-label strong{color:var(--white);font-weight:600}
 @media(max-width:968px){.hero-signup{gap:18px}.hero-magnet-cover{width:108px}}
 @media(max-width:600px){.hero-signup{flex-direction:column;align-items:flex-start;gap:16px}.hero-magnet-cover{width:124px}.hero-magnet-label{margin-bottom:10px}}
+
+/* Book section: Choice Mindset launch list (own email field, own Kit form; see submitForm) */
+.book{padding:40px 48px 120px;max-width:1280px;margin:0 auto;position:relative;scroll-margin-top:80px}
+.book-grid{display:grid;grid-template-columns:380px 1fr;gap:80px;align-items:center}
+.book-cover-wrap{display:flex;justify-content:center}
+.book-cover-frame{position:relative;width:320px}
+.book-cover-frame::before{content:'';position:absolute;top:-10px;right:-10px;bottom:10px;left:10px;border:1px solid rgba(201,168,76,.25);z-index:0}
+.book-cover-frame::after{content:'';position:absolute;inset:-48px;background:radial-gradient(ellipse at center,rgba(201,168,76,.10),transparent 70%);z-index:0;pointer-events:none}
+.book-cover{position:relative;z-index:1;width:100%;height:auto;display:block;border-radius:3px;border:1px solid rgba(201,168,76,.3);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.book-badge{position:absolute;top:-11px;left:-11px;z-index:2;background:var(--gold);color:var(--navy-deep);font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;border-radius:2px;line-height:1;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.book-text{max-width:560px}
+.book-sub{margin-bottom:28px}
+.book-quote{margin:0 0 36px;padding:20px 24px;border-left:2px solid var(--gold);background:rgba(201,168,76,.04)}
+.book-quote p{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;color:var(--cream);line-height:1.55;margin:0 0 10px}
+.book-quote cite{display:block;font-style:normal;font-size:13px;color:var(--slate-light);font-weight:300}
+.book-form-label{display:block;font-size:14px;line-height:1.45;color:var(--slate-light);font-weight:300;margin:0 0 14px}
+.book-form-label strong{color:var(--white);font-weight:600}
+.book-form{display:flex;gap:0;max-width:460px}
+.book-note{margin-top:14px;font-size:13px;color:#8A97AB;font-weight:300}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-link{font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate-light);text-decoration:none;transition:color .3s ease;padding:12px 8px;margin:-12px -8px;white-space:nowrap}
+.section-title em{font-style:italic;color:var(--gold)}
+.nav-link:hover{color:var(--gold)}
+@media(max-width:968px){
+  .nav.scrolled{padding-left:24px;padding-right:24px}
+  .nav-logo{white-space:nowrap}
+  .book{padding:24px 24px 80px}
+  .book-grid{grid-template-columns:1fr;gap:40px}
+  .book-cover-frame{width:220px}
+  .book-form{flex-direction:column}
+  .book-form .hero-input{border-right:1px solid rgba(255,255,255,.12)}
+}
+@media(max-width:340px){
+  .nav-logo{font-size:19px}
+  .nav-link{letter-spacing:1px}
+}
 </style>
 </head>
 <body>
@@ -157,7 +193,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- NAV -->
 <nav class="nav" id="main-nav">
   <div class="nav-logo">MICHAEL <span>SALETTA</span></div>
-  <a href="#hero-email" class="nav-cta" onclick="return highlightHeroEmail();">Get the Framework</a>
+  <div class="nav-links">
+    <a href="#book" class="nav-link" onclick="return highlightBookEmail();">The Book</a>
+    <a href="#hero-email" class="nav-cta" onclick="return highlightHeroEmail();">Get the Framework</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -201,6 +240,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<!-- BOOK: Choice Mindset launch list. Separate opt-in from the Playbook/newsletter. -->
+<section class="book" id="book">
+  <div class="book-grid">
+    <div class="book-cover-wrap fade-up" data-animate>
+      <div class="book-cover-frame">
+        <img class="book-cover" src="choice-mindset-cover.jpg" width="800" height="1200" alt="Choice Mindset by Michael Saletta: The Missing Link to Shift Reactive Patterns and Take Back Your Life">
+        <span class="book-badge">Coming Soon</span>
+      </div>
+    </div>
+    <div class="book-text fade-up d2" data-animate>
+      <div class="section-label">The New Book</div>
+      <h2 class="section-title">Lead by <em>Choice</em>,<br>Not by Reaction.</h2>
+      <p class="section-sub book-sub">Choice Mindset goes beyond positivity. Featuring the Brain C.R.A.V.E.S.&trade; framework, it gives leaders a science-backed method to replace reactive patterns with intentional responses.</p>
+      <blockquote class="book-quote">
+        <p>&ldquo;CHOICE MINDSET takes the principles of personal responsibility and mindset mastery to the next level. It&rsquo;s bold, practical, and grounded in science.&rdquo;</p>
+        <cite>Jack Canfield, Author of The Success Principles&trade; and Coauthor of Chicken Soup for the Soul&reg;</cite>
+      </blockquote>
+      <div id="book-form-wrap">
+        <label for="book-email" class="book-form-label">Hear first when Choice Mindset launches</label>
+        <div class="book-form">
+          <input id="book-email" type="email" class="hero-input" placeholder="Your executive email" autocomplete="email">
+          <button class="hero-btn" onclick="submitForm(3)">Get Launch Updates</button>
+        </div>
+        <p class="book-note">Launch updates only. No newsletter. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
 
 <!-- FRAMEWORKS -->
 <section class="frameworks">
@@ -318,8 +388,8 @@ function animateCounter(id,end,duration,suffix){
 }
 
 // Nav CTA: scroll to hero email, focus it, pulse the glow
-function highlightHeroEmail(){
-  var el=document.getElementById('hero-email');
+function highlightEmail(id){
+  var el=document.getElementById(id);
   el.scrollIntoView({behavior:'smooth',block:'center'});
   el.focus({preventScroll:true});
   el.classList.remove('glow-pulse');
@@ -328,17 +398,37 @@ function highlightHeroEmail(){
   el.addEventListener('animationend',function(){el.classList.remove('glow-pulse')},{once:true});
   return false;
 }
+function highlightHeroEmail(){ return highlightEmail('hero-email'); }
+function highlightBookEmail(){ return highlightEmail('book-email'); }
 
 // Form submission to Kit + redirect to thank you page
+// Kit form IDs. The Playbook/newsletter form is Michael's existing one.
+// BOOK_KIT_FORM_ID: paste the ID of the "Book Launch Updates" form Michael creates in Kit.
+// Until it is set, book signups fall back to the Playbook form with a fields[book_launch]=yes marker
+// so no email is lost, but those subscribers will also receive the Playbook sequence.
+// The marker only persists if a custom field with key book_launch exists in Michael's Kit account
+// (Kit drops unknown field keys silently). While the fallback is active the book note under the
+// form is softened at load so the page never promises "No newsletter" it cannot keep.
+var PLAYBOOK_KIT_FORM_ID = '9546925';
+var BOOK_KIT_FORM_ID = '9896015'; // "Book Launch Updates" form, created by Michael Sep 8 2026
+if(!BOOK_KIT_FORM_ID){
+  var bookNote = document.querySelector('.book-note');
+  if(bookNote) bookNote.textContent = 'Launch updates for Choice Mindset. Unsubscribe anytime.';
+}
+
 function submitForm(variant){
   var email = '';
   if(variant===1) email = document.getElementById('hero-email').value;
   if(variant===2) email = document.getElementById('bottom-email').value;
+  if(variant===3) email = document.getElementById('book-email').value;
 
   if(!email || !email.includes('@')) return;
 
-  // Fire GTM dataLayer event
-  window.dataLayer.push({'event':'email_signup','form_location': variant===1 ? 'hero' : 'bottom_cta'});
+  var isBook = (variant===3);
+  var formLocation = variant===1 ? 'hero' : (variant===2 ? 'bottom_cta' : 'book');
+
+  // Fire GTM dataLayer event. `list` separates book-launch signups from Playbook signups.
+  window.dataLayer.push({'event':'email_signup','form_location': formLocation,'list': isBook ? 'book_launch' : 'playbook'});
 
   // Disable buttons
   var btns = document.querySelectorAll('.hero-btn');
@@ -351,9 +441,10 @@ function submitForm(variant){
   document.body.appendChild(iframe);
 
   // Create hidden form pointing to Kit
+  var formId = (isBook && BOOK_KIT_FORM_ID) ? BOOK_KIT_FORM_ID : PLAYBOOK_KIT_FORM_ID;
   var form = document.createElement('form');
   form.method = 'POST';
-  form.action = 'https://app.kit.com/forms/9546925/subscriptions';
+  form.action = 'https://app.kit.com/forms/' + formId + '/subscriptions';
   form.target = 'kit-submit';
 
   var input = document.createElement('input');
@@ -362,12 +453,20 @@ function submitForm(variant){
   input.value = email;
   form.appendChild(input);
 
+  if(isBook && !BOOK_KIT_FORM_ID){
+    var marker = document.createElement('input');
+    marker.type = 'hidden';
+    marker.name = 'fields[book_launch]';
+    marker.value = 'yes';
+    form.appendChild(marker);
+  }
+
   document.body.appendChild(form);
   form.submit();
 
   // Redirect after brief delay to allow submission
   setTimeout(function(){
-    window.location.href = '/thanks';
+    window.location.href = isBook ? '/thanks-book' : '/thanks';
   }, 1200);
 }
 </script>
